@@ -17,9 +17,13 @@ function init() {
         var timeVal = timeValEl[i].id;
         console.log("Past Time: " +timeVal);
 
-        // If the time is in future set background color of time block to green
+        // If the time is in future set background color of time block to shade of green
         if(timeVal > currHour) {
             timeBlockEl.eq(i).addClass("future");
+        }
+        // If the time is in past set background color of time block to shade of gray
+        else if(timeVal < currHour) {
+            timeBlockEl.eq(i).addClass("past");
         }
     }
 }
