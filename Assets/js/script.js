@@ -25,6 +25,10 @@ function init() {
         else if(timeVal < currHour) {
             timeBlockEl.eq(i).addClass("past");
         }
+        // If the time is in present hour set background color of time block to shade of red
+        else {
+            timeBlockEl.eq(i).addClass("present");
+        }
     }
 }
 
