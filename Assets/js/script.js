@@ -8,6 +8,8 @@ var timeSchedEl = $("#time-sched");
 var currDay = moment().format('dddd') + ", " + moment().format('MMMM Do');
 $('#currentDay').text(currDay);
 
+var savedTasks = JSON.parse(localStorage.getItem("savedTaskArr")); // Get previously stored tasks from local storage
+
 // Function to display the calendar based on the time of day
 function init() {
     console.log(timeValEl);
@@ -38,10 +40,8 @@ function saveTask(event) {
     // Get the details of the task to be saved
     var recToSave = $(event.target);
     // console.log(recToSave.parent().siblings('.time-block').val());
-    var saveRecord = recToSave.parent().siblings('.time-block').children().val();
+    var saveRecord = recToSave.parent().siblings('.time-block').val();
     var saveRecTime = recToSave.parent().siblings('.time-block-val').text();
-
-    var savedTasks = JSON.parse(localStorage.getItem("savedTaskArr")); // Get previously stored tasks from local storage
 
     if(savedTasks === null) {
         var newTask = [{
