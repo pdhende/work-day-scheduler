@@ -3,12 +3,11 @@
 var timeValEl = $(".time-block-val");
 var timeBlockEl = $(".time-block");
 var timeSchedEl = $("#time-sched");
+var savedTasks;
 
 // Display current day
 var currDay = moment().format('dddd') + ", " + moment().format('MMMM Do');
 $('#currentDay').text(currDay);
-
-var savedTasks = JSON.parse(localStorage.getItem("savedTaskArr")); // Get previously stored tasks from local storage
 
 // Function to display the calendar based on the time of day
 function init() {
@@ -33,10 +32,20 @@ function init() {
             timeBlockEl.eq(i).addClass("present");
         }
     }
+    savedTasks = JSON.parse(localStorage.getItem("savedTaskArr")); // Get previously stored tasks from local storage
+    if(savedTasks !== null) {
+        savedTasks.forEach(function(obj) {
+            var timeSlot = obj.taskTime;
+            var timeTaskVal = obj.taskVal;
+            var textId = "#"+timeSlot;
+            $(textId).text(timeTaskVal);
+        });
+    }
 }
 
 function saveTask(event) {
 
+    savedTasks = JSON.parse(localStorage.getItem("savedTaskArr")); // Get previously stored tasks from local storage
     // Get the details of the task to be saved
     var recToSave = $(event.target);
     // console.log(recToSave.parent().siblings('.time-block').val());
