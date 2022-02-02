@@ -2,6 +2,7 @@
 // Fetch elements
 var timeValEl = $(".time-block-val");
 var timeBlockEl = $(".time-block");
+var timeSchedEl = $("#time-sched");
 
 // Display current day
 var currDay = moment().format('dddd') + ", " + moment().format('MMMM Do');
@@ -32,5 +33,38 @@ function init() {
     }
 }
 
+function saveTask(event) {
+
+    // Get the details of the task to be saved
+    var recToSave = $(event.target);
+    // console.log(recToSave.parent().siblings('.time-block').val());
+    var saveRecord = recToSave.parent().siblings('.time-block').children().val();
+    var saveRecTime = recToSave.parent().siblings('.time-block-val').text();
+
+    var savedTasks = JSON.parse(localStorage.getItem("savedTaskArr")); // Get previously stored tasks from local storage
+
+    if(savedTasks === null) {
+        var newTask = [{
+            taskTime: saveRecTime,
+            taskVal: saveRecord
+        }];
+        localStorage.setItem("savedTaskArr", JSON.stringify(newTask));
+    }
+    else {
+        var oldTasks = JSON.parse(localStorage.getItem("savedTaskArr")) || [];
+        var newTask = {
+            taskTime: saveRecTime,
+            taskVal: saveRecord
+        };
+        oldTasks.push(newTask);
+        localStorage.setItem("savedTaskArr", JSON.stringify(oldTasks));
+    } 
+}
+
 // Function called when the page loads
 init();
+
+// Event Listener
+timeSchedEl.on('click', '.saveBtn', saveTask);
+
+
