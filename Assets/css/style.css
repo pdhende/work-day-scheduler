@@ -5,7 +5,6 @@ body {
 }
 
 textarea {
-  /* min-width: 100%; */
   background: transparent;
   border: none;
   resize: none;
@@ -31,10 +30,8 @@ textarea {
   /* border-radius: 15px; */
 }
 
-.time-block :focus{
-  outline: none !important;
-  border-color: #06aed5;
-  box-shadow: 0 0 10px #06aed5;
+.time-block:focus{
+  outline-color: #06aed5;
 }
 
 .row {
