@@ -11,13 +11,9 @@ $('#currentDay').text(currDay);
 
 // Function to display the calendar based on the time of day
 function init() {
-    console.log(timeValEl);
-    console.log(timeValEl.length);
     var currHour = moment().hour();
-    console.log("Current Hour: "+currHour);
     for(var i = 0; i < timeValEl.length; i++) {
         var timeVal = timeValEl[i].id;
-        console.log("Past Time: " +timeVal);
 
         // If the time is in future set background color of time block to shade of green
         if(timeVal > currHour) {
